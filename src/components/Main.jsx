@@ -1,26 +1,36 @@
-import React, {Component} from 'react';
+import React, {useRef, useState , useEffect} from 'react';
+import List from './List';
 
-class Main extends Component {
-    render() {
-        return (
-<>
-                <div id="myDIV" className="header">
-                    <h2 >My To Do List</h2>
-                    <input type="text" id="myInput" placeholder="Title..."/>
-                        <span className="addBtn">Add</span>
-                </div>
+export default function Main() {
 
-                <ul id="myUL">
-                    <li>Hit the gym</li>
-                    <li className="checked">Pay bills</li>
-                    <li>Meet George</li>
-                    <li>Buy eggs</li>
-                    <li>Read a book</li>
-                    <li>Organize office</li>
-                </ul>
-           </>
-        );
-    }
+    const [inputValue , setinputValue] = useState("");
+    const [listState , setListState] = useState([]);
+    const useNameRef = useRef();
+ const toDoList = listState.map((todo,index)=>(
+   <List key={index} work={todo} />
+ ))
+ function handleClick(){
+   if( !inputValue == "")
+   { setListState( listState => [...listState , inputValue  ]);
+  setinputValue("");}
+    else window.alert("please type something");
+  }
+useEffect(()=>{
+  useNameRef.current.focus();
+} );
+  return (
+    <>
+    <div id="myDIV" className="header">
+        <h2 >My To Do List</h2>
+        <input ref={useNameRef}  type="text" id="myInput" placeholder="Title..." value={inputValue}
+         onChange={(e)=>{setinputValue(e.target.value)}}  />
+            <span onClick={handleClick}
+                  className="addBtn">Add
+            </span>
+    </div>
+  {toDoList}
+        
+   
+</>
+  )
 }
-
-export default Main;
