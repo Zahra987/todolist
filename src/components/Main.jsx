@@ -6,10 +6,10 @@ export default function Main() {
     const [inputValue , setinputValue] = useState("");
     const [listState , setListState] = useState([]);
     const useNameRef = useRef();
-
+    
 
     const toDoList = listState.map((todo,index)=>(
-   <List key={index} work={todo} />))
+   <List key={index} work={todo} fard={index%2} />))
 
 
     function handleClick(){

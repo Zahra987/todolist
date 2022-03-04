@@ -32,8 +32,9 @@ ul li {
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-ul li:nth-child(odd) {
+ul li.fard {
   background: #f9f9f9;
+
 }
 
 /* Darker background-color on hover */
